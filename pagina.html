@@ -81,6 +81,21 @@
             console.warn("Non è stato possibile caricare nomiScuole.json", err);
         }
 
+        // ✅ CREA SUBITO I BOTTONI PER OGNI CATEGORIA PRESENTE NEL JSON
+        let categoriePresenti = new Set(Object.keys(nomiScuole)
+            .filter(k => k.startsWith(`${anno}-${tipo}`))
+            .map(k => k.split('-')[2]) // prende il numero categoria (es. '1' da '2017-finale-1-1')
+        );
+
+        categoriePresenti = Array.from(categoriePresenti).sort((a, b) => a - b);
+
+        categoriePresenti.forEach((cat, idx) => {
+            const chiave = `${anno}-${tipo}-${cat}-1`;
+            const nome = nomiScuole[chiave] || `Questionario ${cat}`;
+            addCategoryNavButton(nome, idx); // aggiunge subito i bottoni
+        });
+
+        // 👇 Continua con il caricamento delle immagini come prima
         let categoria = 1;
         let sottoIndice = 1;
         let trovatiGrafici = false;
@@ -100,11 +115,6 @@
                 slideDiv.classList.add('swiper-slide');
                 slideDiv.appendChild(img);
                 swiperWrapper.appendChild(slideDiv);
-
-                if (sottoIndice === 1) {
-                    const nome = nomiScuole[fileBase] || `Questionario ${categoria}`;
-                    addCategoryNavButton(nome, swiperWrapper.children.length - 1);
-                }
 
                 sottoIndice++;
                 caricaProssimaImmagine();
