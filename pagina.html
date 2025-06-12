@@ -142,7 +142,7 @@
     function addCategoryNavButton(nome, slideIndex) {
         const button = document.createElement('button');
         button.textContent = nome;
-        button.onclick = () => swiperInstance.slideTo(slideIndex);
+        button.onclick = () => swiperInstance.slideToLoop(slideIndex);
         categoryNav.appendChild(button);
     }
 
