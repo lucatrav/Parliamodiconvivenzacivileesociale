@@ -10,33 +10,170 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body>
-<!-- Swiper.js -->
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<!-- Tesseract.js -->
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js/dist/tesseract.min.js"></script>
+<div class="main-container">
+    <h2 id="titoloAnno"></h2>
 
+    <div class="custom-slider" id="graficiContainer">
+        <div class="loading-indicator">
+            <div class="spinner"></div>
+            Caricamento grafici...
+        </div>
 
-<h2 id="titoloAnno"></h2>
+        <div class="slides-container" id="slidesContainer">
+            <!-- Le slide verranno inserite qui -->
+        </div>
 
-<!-- Container Swiper: le slide verranno inserite dinamicamente -->
-<div class="swiper-container" id="graficiContainer">
-    <div class="swiper-wrapper"></div>
-    <!-- Navigazione dello slider -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-pagination"></div>
+        <button class="nav-button nav-prev" id="prevBtn">‹</button>
+        <button class="nav-button nav-next" id="nextBtn">›</button>
+
+        <div class="slide-counter" id="slideCounter">1 / 1</div>
+        <div class="indicators" id="indicators"></div>
+    </div>
+
+    <div id="categoryNav"></div>
+    <button class="back-button" onClick="tornaIndietro()">Torna alla pagina precedente</button>
 </div>
 
-<!-- Navigazione per categorie -->
-<div id="categoryNav"></div>
-
-<button onClick="tornaIndietro()">Torna alla pagina precedente</button>
-
 <script>
+    class CustomSlider {
+        constructor(container) {
+            this.container = container;
+            this.slidesContainer = container.querySelector('#slidesContainer');
+            this.prevBtn = container.querySelector('#prevBtn');
+            this.nextBtn = container.querySelector('#nextBtn');
+            this.slideCounter = container.querySelector('#slideCounter');
+            this.indicators = container.querySelector('#indicators');
+            this.loadingIndicator = container.querySelector('.loading-indicator');
+
+            this.slides = [];
+            this.currentSlide = 0;
+            this.totalSlides = 0;
+
+            this.initEvents();
+        }
+
+        initEvents() {
+            this.prevBtn.addEventListener('click', () => this.prevSlide());
+            this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+            // Supporto touch per mobile
+            let startX = 0;
+            let endX = 0;
+
+            this.slidesContainer.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+
+            this.slidesContainer.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        this.nextSlide();
+                    } else {
+                        this.prevSlide();
+                    }
+                }
+            });
+
+            // Supporto keyboard
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') this.prevSlide();
+                if (e.key === 'ArrowRight') this.nextSlide();
+            });
+        }
+
+        addSlide(imgElement, slideIndex) {
+            const slide = document.createElement('div');
+            slide.classList.add('slide');
+            slide.appendChild(imgElement);
+
+            this.slidesContainer.appendChild(slide);
+            this.slides.push(slide);
+            this.totalSlides++;
+
+            // Se è la prima slide, rendila attiva
+            if (this.totalSlides === 1) {
+                slide.classList.add('active');
+                this.hideLoading();
+            }
+
+            this.updateIndicators();
+            this.updateCounter();
+            this.updateNavButtons();
+        }
+
+        goToSlide(index) {
+            if (index < 0 || index >= this.totalSlides) return;
+
+            // Rimuovi classe active dalla slide corrente
+            this.slides[this.currentSlide].classList.remove('active');
+
+            // Imposta nuova slide corrente
+            this.currentSlide = index;
+            this.slides[this.currentSlide].classList.add('active');
+
+            // Forza il repaint dell'immagine
+            setTimeout(() => {
+                const img = this.slides[this.currentSlide].querySelector('.grafico-img');
+                if (img) {
+                    img.style.transform = 'translateZ(0)';
+                    // Trigger reflow
+                    img.offsetHeight;
+                }
+            }, 50);
+
+            this.updateIndicators();
+            this.updateCounter();
+            this.updateNavButtons();
+        }
+
+        nextSlide() {
+            const nextIndex = (this.currentSlide + 1) % this.totalSlides;
+            this.goToSlide(nextIndex);
+        }
+
+        prevSlide() {
+            const prevIndex = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+            this.goToSlide(prevIndex);
+        }
+
+        updateIndicators() {
+            this.indicators.innerHTML = '';
+
+            for (let i = 0; i < this.totalSlides; i++) {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                if (i === this.currentSlide) {
+                    indicator.classList.add('active');
+                }
+                indicator.addEventListener('click', () => this.goToSlide(i));
+                this.indicators.appendChild(indicator);
+            }
+        }
+
+        updateCounter() {
+            this.slideCounter.textContent = `${this.currentSlide + 1} / ${this.totalSlides}`;
+        }
+
+        updateNavButtons() {
+            this.prevBtn.disabled = this.totalSlides <= 1;
+            this.nextBtn.disabled = this.totalSlides <= 1;
+        }
+
+        hideLoading() {
+            if (this.loadingIndicator) {
+                this.loadingIndicator.style.display = 'none';
+            }
+        }
+    }
+
+    // Inizializzazione
     const params = new URLSearchParams(window.location.search);
-    const anno = params.get('anno');         // es. 2017
-    const fase = params.get('fase');         // es. iniziale, finale
-    const relazioni = params.get('relazioni'); // es. studenti, detenuti
+    const anno = params.get('anno');
+    const fase = params.get('fase');
+    const relazioni = params.get('relazioni');
     const tipo = fase ? fase : relazioni;
 
     const titoloAnno = document.getElementById('titoloAnno');
@@ -49,107 +186,107 @@
     }
 
     const graficiContainer = document.getElementById('graficiContainer');
-    const swiperWrapper = graficiContainer.querySelector('.swiper-wrapper');
     const categoryNav = document.getElementById('categoryNav');
-    let swiperInstance = null;
-    let nomiScuole = {};
 
-    function initSwiper() {
-        swiperInstance = new Swiper('.swiper-container', {
-            loop: true,
-            slidesPerView: 1,
-            spaceBetween: 10,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            observer: true,
-            observeParents: true,
-        });
-    }
+    const slider = new CustomSlider(graficiContainer);
+    let nomiScuole = {};
+    let categorieInfo = [];
 
     async function caricaGrafici() {
         try {
-            // Carica il JSON dei nomi scuole
             const response = await fetch(`grafici/${anno}/nomiScuole.json`);
             nomiScuole = await response.json();
         } catch (err) {
             console.warn("Non è stato possibile caricare nomiScuole.json", err);
         }
 
-        // ✅ CREA SUBITO I BOTTONI PER OGNI CATEGORIA PRESENTE NEL JSON
-        let categoriePresenti = new Set(Object.keys(nomiScuole)
-            .filter(k => k.startsWith(`${anno}-${tipo}`))
-            .map(k => k.split('-')[2]) // prende il numero categoria (es. '1' da '2017-finale-1-1')
-        );
-
-        categoriePresenti = Array.from(categoriePresenti).sort((a, b) => a - b);
-
-        categoriePresenti.forEach((cat, idx) => {
-            const chiave = `${anno}-${tipo}-${cat}-1`;
-            const nome = nomiScuole[chiave] || `Questionario ${cat}`;
-            addCategoryNavButton(nome, idx); // aggiunge subito i bottoni
-        });
-
-        // 👇 Continua con il caricamento delle immagini come prima
         let categoria = 1;
         let sottoIndice = 1;
         let trovatiGrafici = false;
+        let slideIndex = 0;
 
-        const caricaProssimaImmagine = () => {
+        const caricaProssimaImmagine = async () => {
             const fileBase = `${anno}-${tipo}-${categoria}-${sottoIndice}`;
             const imgSrc = `grafici/${anno}/${fileBase}.png`;
 
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.alt = `Grafico ${categoria}-${sottoIndice} per ${anno} - ${tipo}`;
-            img.classList.add('grafico-img');
+            try {
+                // Carica l'immagine completamente prima di mostrarla
+                const img = await loadImage(imgSrc);
 
-            img.onload = () => {
                 trovatiGrafici = true;
-                const slideDiv = document.createElement('div');
-                slideDiv.classList.add('swiper-slide');
-                slideDiv.appendChild(img);
-                swiperWrapper.appendChild(slideDiv);
 
+                const displayImg = document.createElement('img');
+                displayImg.src = img.src;
+                displayImg.alt = `Grafico ${categoria}-${sottoIndice} per ${anno} - ${tipo}`;
+                displayImg.classList.add('grafico-img');
+
+                // Aggiungi al slider
+                slider.addSlide(displayImg, slideIndex);
+
+                // Salva info categoria
+                if (sottoIndice === 1) {
+                    const chiave = `${anno}-${tipo}-${categoria}-1`;
+                    const nome = nomiScuole[chiave] || `Questionario ${categoria}`;
+                    categorieInfo.push({
+                        nome: nome,
+                        slideIndex: slideIndex
+                    });
+                }
+
+                slideIndex++;
                 sottoIndice++;
-                caricaProssimaImmagine();
-            };
 
-            img.onerror = () => {
+                // Carica la prossima immagine
+                setTimeout(caricaProssimaImmagine, 100);
+
+            } catch (error) {
                 if (sottoIndice > 1) {
                     categoria++;
                     sottoIndice = 1;
-                    caricaProssimaImmagine();
+                    setTimeout(caricaProssimaImmagine, 100);
                 } else {
                     if (!trovatiGrafici) {
-                        graficiContainer.textContent = 'Nessun grafico trovato per questa combinazione.';
+                        slider.hideLoading();
+                        graficiContainer.innerHTML = '<div class="no-graphics-message">Nessun grafico trovato per questa combinazione.</div>';
                     } else {
-                        initSwiper();
-                        swiperInstance.update();
+                        createCategoryButtons();
                     }
                 }
-            };
+            }
         };
 
         caricaProssimaImmagine();
     }
 
-    function addCategoryNavButton(nome, slideIndex) {
-        const button = document.createElement('button');
-        button.textContent = nome;
-        button.onclick = () => swiperInstance.slideToLoop(slideIndex);
-        categoryNav.appendChild(button);
+    function loadImage(src) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+            img.src = src;
+        });
     }
 
-    caricaGrafici();
+    function createCategoryButtons() {
+        categorieInfo.forEach((categoria) => {
+            const button = document.createElement('button');
+            button.textContent = categoria.nome;
+            button.onclick = () => {
+                slider.goToSlide(categoria.slideIndex);
+            };
+            categoryNav.appendChild(button);
+        });
+    }
 
     function tornaIndietro() {
         window.history.back();
+    }
+
+    // Avvia il caricamento
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', caricaGrafici);
+    } else {
+        caricaGrafici();
     }
 </script>
 </body>
