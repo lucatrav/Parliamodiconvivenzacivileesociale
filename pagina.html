@@ -17,6 +17,7 @@
         <div class="loading-indicator">
             <div class="spinner"></div>
             Caricamento grafici...
+            <div class="loading-progress" id="loadingProgress">0%</div>
         </div>
 
         <div class="slides-container" id="slidesContainer">
@@ -44,6 +45,7 @@
             this.slideCounter = container.querySelector('#slideCounter');
             this.indicators = container.querySelector('#indicators');
             this.loadingIndicator = container.querySelector('.loading-indicator');
+            this.loadingProgress = container.querySelector('#loadingProgress');
 
             this.slides = [];
             this.currentSlide = 0;
@@ -84,7 +86,7 @@
             });
         }
 
-        addSlide(imgElement, slideIndex) {
+        addSlide(imgElement, slideIndex, isFirst = false) {
             const slide = document.createElement('div');
             slide.classList.add('slide');
             slide.appendChild(imgElement);
@@ -94,7 +96,7 @@
             this.totalSlides++;
 
             // Se è la prima slide, rendila attiva
-            if (this.totalSlides === 1) {
+            if (isFirst) {
                 slide.classList.add('active');
                 this.hideLoading();
             }
@@ -102,6 +104,13 @@
             this.updateIndicators();
             this.updateCounter();
             this.updateNavButtons();
+        }
+
+        updateProgress(loaded, total) {
+            if (this.loadingProgress && total > 0) {
+                const percentage = Math.round((loaded / total) * 100);
+                this.loadingProgress.textContent = `${percentage}% (${loaded}/${total})`;
+            }
         }
 
         goToSlide(index) {
@@ -192,79 +201,162 @@
     let nomiScuole = {};
     let categorieInfo = [];
 
-    async function caricaGrafici() {
-        try {
-            const response = await fetch(`grafici/${anno}/nomiScuole.json`);
-            nomiScuole = await response.json();
-        } catch (err) {
-            console.warn("Non è stato possibile caricare nomiScuole.json", err);
+    // Funzione per scoprire tutte le immagini disponibili
+    async function scopriImmaginiDisponibili() {
+        const immaginiTrovate = [];
+        let categoria = 1;
+
+        while (true) {
+            let sottoIndice = 1;
+            let trovatoAlmenoUno = false;
+
+            while (true) {
+                const fileBase = `${anno}-${tipo}-${categoria}-${sottoIndice}`;
+                const imgSrc = `grafici/${anno}/${fileBase}.png`;
+
+                try {
+                    // Verifica se l'immagine esiste facendo una HEAD request
+                    const response = await fetch(imgSrc, { method: 'HEAD' });
+                    if (response.ok) {
+                        immaginiTrovate.push({
+                            src: imgSrc,
+                            categoria: categoria,
+                            sottoIndice: sottoIndice,
+                            fileBase: fileBase
+                        });
+                        trovatoAlmenoUno = true;
+                        sottoIndice++;
+                    } else {
+                        break; // Non esistono più immagini per questa categoria
+                    }
+                } catch (error) {
+                    break; // Errore o immagine non trovata
+                }
+            }
+
+            if (!trovatoAlmenoUno) {
+                break; // Non esistono più categorie
+            }
+            categoria++;
         }
 
-        let categoria = 1;
-        let sottoIndice = 1;
-        let trovatiGrafici = false;
-        let slideIndex = 0;
+        return immaginiTrovate;
+    }
 
-        const caricaProssimaImmagine = async () => {
-            const fileBase = `${anno}-${tipo}-${categoria}-${sottoIndice}`;
-            const imgSrc = `grafici/${anno}/${fileBase}.png`;
+    // Funzione per il preload delle immagini con concorrenza limitata
+    async function preloadImmagini(immaginiInfo, maxConcorrenti = 5) {
+        const risultati = [];
+        let completate = 0;
+
+        // Funzione per caricare una singola immagine
+        const caricaSingolaImmagine = (info) => {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+
+                img.onload = () => {
+                    completate++;
+                    slider.updateProgress(completate, immaginiInfo.length);
+                    resolve({ ...info, img });
+                };
+
+                img.onerror = () => {
+                    completate++;
+                    slider.updateProgress(completate, immaginiInfo.length);
+                    reject(new Error(`Errore caricamento: ${info.src}`));
+                };
+
+                img.src = info.src;
+            });
+        };
+
+        // Carica le immagini in lotti per evitare di sovraccaricare il browser
+        for (let i = 0; i < immaginiInfo.length; i += maxConcorrenti) {
+            const lotto = immaginiInfo.slice(i, i + maxConcorrenti);
+            const promesseLotto = lotto.map(caricaSingolaImmagine);
 
             try {
-                // Carica l'immagine completamente prima di mostrarla
-                const img = await loadImage(imgSrc);
+                const risultatiLotto = await Promise.allSettled(promesseLotto);
+                risultatiLotto.forEach((risultato, index) => {
+                    if (risultato.status === 'fulfilled') {
+                        risultati.push(risultato.value);
+                    } else {
+                        console.warn(`Errore caricamento immagine ${lotto[index].src}:`, risultato.reason);
+                    }
+                });
+            } catch (error) {
+                console.error('Errore nel caricamento del lotto:', error);
+            }
+        }
 
-                trovatiGrafici = true;
+        return risultati;
+    }
 
+    async function caricaGrafici() {
+        try {
+            // Carica i nomi delle scuole
+            try {
+                const response = await fetch(`grafici/${anno}/nomiScuole.json`);
+                nomiScuole = await response.json();
+            } catch (err) {
+                console.warn("Non è stato possibile caricare nomiScuole.json", err);
+            }
+
+            // Scopri tutte le immagini disponibili
+            console.log('Ricerca immagini disponibili...');
+            const immaginiInfo = await scopriImmaginiDisponibili();
+
+            if (immaginiInfo.length === 0) {
+                slider.hideLoading();
+                graficiContainer.innerHTML = '<div class="no-graphics-message">Nessun grafico trovato per questa combinazione.</div>';
+                return;
+            }
+
+            console.log(`Trovate ${immaginiInfo.length} immagini. Inizio preload...`);
+
+            // Preload tutte le immagini
+            const immaginiCaricate = await preloadImmagini(immaginiInfo, 6); // Carica max 6 alla volta
+
+            console.log(`Caricate ${immaginiCaricate.length} immagini su ${immaginiInfo.length}`);
+
+            // Ordina le immagini per categoria e sottocategoria
+            immaginiCaricate.sort((a, b) => {
+                if (a.categoria !== b.categoria) {
+                    return a.categoria - b.categoria;
+                }
+                return a.sottoIndice - b.sottoIndice;
+            });
+
+            // Aggiungi le immagini al slider
+            immaginiCaricate.forEach((imgInfo, index) => {
                 const displayImg = document.createElement('img');
-                displayImg.src = img.src;
-                displayImg.alt = `Grafico ${categoria}-${sottoIndice} per ${anno} - ${tipo}`;
+                displayImg.src = imgInfo.img.src;
+                displayImg.alt = `Grafico ${imgInfo.categoria}-${imgInfo.sottoIndice} per ${anno} - ${tipo}`;
                 displayImg.classList.add('grafico-img');
 
                 // Aggiungi al slider
-                slider.addSlide(displayImg, slideIndex);
+                slider.addSlide(displayImg, index, index === 0);
 
-                // Salva info categoria
-                if (sottoIndice === 1) {
-                    const chiave = `${anno}-${tipo}-${categoria}-1`;
-                    const nome = nomiScuole[chiave] || `Questionario ${categoria}`;
+                // Salva info categoria per il primo grafico di ogni categoria
+                if (imgInfo.sottoIndice === 1) {
+                    const chiave = `${anno}-${tipo}-${imgInfo.categoria}-1`;
+                    const nome = nomiScuole[chiave] || `Questionario ${imgInfo.categoria}`;
                     categorieInfo.push({
                         nome: nome,
-                        slideIndex: slideIndex
+                        slideIndex: index
                     });
                 }
+            });
 
-                slideIndex++;
-                sottoIndice++;
+            // Crea i bottoni delle categorie
+            createCategoryButtons();
 
-                // Carica la prossima immagine
-                setTimeout(caricaProssimaImmagine, 100);
+            console.log('Caricamento completato!');
 
-            } catch (error) {
-                if (sottoIndice > 1) {
-                    categoria++;
-                    sottoIndice = 1;
-                    setTimeout(caricaProssimaImmagine, 100);
-                } else {
-                    if (!trovatiGrafici) {
-                        slider.hideLoading();
-                        graficiContainer.innerHTML = '<div class="no-graphics-message">Nessun grafico trovato per questa combinazione.</div>';
-                    } else {
-                        createCategoryButtons();
-                    }
-                }
-            }
-        };
-
-        caricaProssimaImmagine();
-    }
-
-    function loadImage(src) {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = () => resolve(img);
-            img.onerror = reject;
-            img.src = src;
-        });
+        } catch (error) {
+            console.error('Errore durante il caricamento:', error);
+            slider.hideLoading();
+            graficiContainer.innerHTML = '<div class="no-graphics-message">Errore durante il caricamento dei grafici.</div>';
+        }
     }
 
     function createCategoryButtons() {
