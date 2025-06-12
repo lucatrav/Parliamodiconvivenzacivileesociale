@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettagli Questionario</title>
+    <link href="css/pagina.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+<body>
+<!-- Swiper.js -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<!-- Tesseract.js -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js/dist/tesseract.min.js"></script>
+
+
+<h2 id="titoloAnno"></h2>
+
+<!-- Container Swiper: le slide verranno inserite dinamicamente -->
+<div class="swiper-container" id="graficiContainer">
+    <div class="swiper-wrapper"></div>
+    <!-- Navigazione dello slider -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+</div>
+
+<!-- Navigazione per categorie -->
+<div id="categoryNav"></div>
+
+<button onClick="tornaIndietro()">Torna alla pagina precedente</button>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const anno = params.get('anno');         // es. 2017
+    const fase = params.get('fase');         // es. iniziale, finale
+    const relazioni = params.get('relazioni'); // es. studenti, detenuti
+    const tipo = fase ? fase : relazioni;
+
+    const titoloAnno = document.getElementById('titoloAnno');
+    if (fase) {
+        titoloAnno.textContent = `Dati Statistici per ${anno} - ${fase}`;
+    } else if (relazioni) {
+        titoloAnno.textContent = `Relazioni ${relazioni} per ${anno}`;
+    } else {
+        titoloAnno.textContent = `Grafici per ${anno}`;
+    }
+
+    const graficiContainer = document.getElementById('graficiContainer');
+    const swiperWrapper = graficiContainer.querySelector('.swiper-wrapper');
+    const categoryNav = document.getElementById('categoryNav');
+    let swiperInstance = null;
+    let nomiScuole = {};
+
+    function initSwiper() {
+        swiperInstance = new Swiper('.swiper-container', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            observer: true,
+            observeParents: true,
+        });
+    }
+
+    async function caricaGrafici() {
+        try {
+            // Carica il JSON dei nomi scuole
+            const response = await fetch(`grafici/${anno}/nomiScuole.json`);
+            nomiScuole = await response.json();
+        } catch (err) {
+            console.warn("Non è stato possibile caricare nomiScuole.json", err);
+        }
+
+        let categoria = 1;
+        let sottoIndice = 1;
+        let trovatiGrafici = false;
+
+        const caricaProssimaImmagine = () => {
+            const fileBase = `${anno}-${tipo}-${categoria}-${sottoIndice}`;
+            const imgSrc = `grafici/${anno}/${fileBase}.png`;
+
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = `Grafico ${categoria}-${sottoIndice} per ${anno} - ${tipo}`;
+            img.classList.add('grafico-img');
+
+            img.onload = () => {
+                trovatiGrafici = true;
+                const slideDiv = document.createElement('div');
+                slideDiv.classList.add('swiper-slide');
+                slideDiv.appendChild(img);
+                swiperWrapper.appendChild(slideDiv);
+
+                if (sottoIndice === 1) {
+                    const nome = nomiScuole[fileBase] || `Questionario ${categoria}`;
+                    addCategoryNavButton(nome, swiperWrapper.children.length - 1);
+                }
+
+                sottoIndice++;
+                caricaProssimaImmagine();
+            };
+
+            img.onerror = () => {
+                if (sottoIndice > 1) {
+                    categoria++;
+                    sottoIndice = 1;
+                    caricaProssimaImmagine();
+                } else {
+                    if (!trovatiGrafici) {
+                        graficiContainer.textContent = 'Nessun grafico trovato per questa combinazione.';
+                    } else {
+                        initSwiper();
+                        swiperInstance.update();
+                    }
+                }
+            };
+        };
+
+        caricaProssimaImmagine();
+    }
+
+    function addCategoryNavButton(nome, slideIndex) {
+        const button = document.createElement('button');
+        button.textContent = nome;
+        button.onclick = () => swiperInstance.slideTo(slideIndex);
+        categoryNav.appendChild(button);
+    }
+
+    caricaGrafici();
+
+    function tornaIndietro() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>

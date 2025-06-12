@@ -1,0 +1,98 @@
+#categoryNav,
+button {
+    margin-top: 10px;
+}
+
+#categoryNav button,
+button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px 12px;      /* ✅ Ridotto padding */
+    font-size: 14px;        /* ✅ Testo più compatto */
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+#categoryNav button:hover,
+button:hover {
+    background-color: #0056b3;
+}
+
+#categoryNav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin: 8px auto;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Titolo */
+#titoloAnno {
+    font-size: 1.4rem;
+    margin: 10px 0;
+}
+
+/* Immagine */
+.grafico-img {
+    max-width: 100%;
+    max-height: 65vh;       /* ✅ Più spazio per l’immagine */
+    margin: 5px auto;
+    display: block;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, .1);
+    object-fit: contain;
+}
+
+/* Swiper */
+.swiper-container {
+    position: relative;
+    height: 68vh;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .swiper-container {
+        height: 60vh;
+        padding-bottom: 60px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none;
+    }
+
+    .grafico-img {
+        max-height: 55vh;
+    }
+
+    button,
+    #categoryNav button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    #titoloAnno {
+        font-size: 1.1rem;
+    }
+}
