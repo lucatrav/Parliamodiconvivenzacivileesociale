@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettagli Questionario - Ottimizzato</title>
+    <link href="css/pagina.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+<body>
+<div class="main-container">
+    <h2 id="titoloAnno"></h2>
+
+    <!-- Indicatore di preload globale -->
+    <div class="preload-status" id="preloadStatus" style="display: none;">
+        Precaricando immagini...
+    </div>
+
+    <div class="custom-slider" id="graficiContainer">
+        <div class="loading-indicator" id="loadingIndicator">
+            <div class="spinner"></div>
+            Caricamento grafici...
+            <div class="loading-progress" id="loadingProgress">0%</div>
+        </div>
+
+        <div class="slides-container" id="slidesContainer">
+            <!-- Le slide verranno inserite qui -->
+        </div>
+
+        <button class="nav-button nav-prev" id="prevBtn">‹</button>
+        <button class="nav-button nav-next" id="nextBtn">›</button>
+
+        <div class="slide-counter" id="slideCounter">1 / 1</div>
+        <div class="indicators" id="indicators"></div>
+    </div>
+
+    <div id="categoryNav"></div>
+    <button class="back-button" onClick="tornaIndietro()">Torna alla pagina precedente</button>
+</div>
+
+<script>
+    class OptimizedImageLoader {
+        constructor() {
+            this.cache = new Map();
+            this.preloadQueue = [];
+            this.isPreloading = false;
+            this.maxConcurrent = 3;
+            this.activeLoads = 0;
+        }
+
+        // Preload immagine con cache
+        async preloadImage(src) {
+            if (this.cache.has(src)) {
+                return this.cache.get(src);
+            }
+
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+
+                img.onload = () => {
+                    this.cache.set(src, img);
+                    resolve(img);
+                };
+
+                img.onerror = () => {
+                    reject(new Error(`Failed to load: ${src}`));
+                };
+
+                img.src = src;
+            });
+        }
+
+        // Preload con priorità
+        async preloadWithPriority(imageSources, onProgress) {
+            const total = imageSources.length;
+            let loaded = 0;
+
+            // Prima carica le prime 3 immagini (priorità alta)
+            const highPriority = imageSources.slice(0, 3);
+            const normalPriority = imageSources.slice(3);
+
+            // Carica prima le immagini ad alta priorità
+            for (const src of highPriority) {
+                try {
+                    await this.preloadImage(src);
+                    loaded++;
+                    onProgress(loaded, total);
+                } catch (error) {
+                    console.warn(`Failed to preload high priority image: ${src}`);
+                    loaded++;
+                    onProgress(loaded, total);
+                }
+            }
+
+            // Poi carica le altre in background con limite di concorrenza
+            this.preloadInBackground(normalPriority, (bgLoaded) => {
+                onProgress(loaded + bgLoaded, total);
+            });
+
+            return loaded;
+        }
+
+        // Preload in background con controllo concorrenza
+        async preloadInBackground(sources, onProgress) {
+            let completed = 0;
+
+            const loadBatch = async (batch) => {
+                const promises = batch.map(async (src) => {
+                    try {
+                        await this.preloadImage(src);
+                    } catch (error) {
+                        console.warn(`Background preload failed: ${src}`);
+                    } finally {
+                        completed++;
+                        onProgress(completed);
+                    }
+                });
+
+                await Promise.all(promises);
+            };
+
+            // Carica in lotti per controllare la concorrenza
+            for (let i = 0; i < sources.length; i += this.maxConcurrent) {
+                const batch = sources.slice(i, i + this.maxConcurrent);
+                await loadBatch(batch);
+            }
+        }
+
+        getCachedImage(src) {
+            return this.cache.get(src);
+        }
+    }
+
+    class CustomSlider {
+        constructor(container) {
+            this.container = container;
+            this.slidesContainer = container.querySelector('#slidesContainer');
+            this.prevBtn = container.querySelector('#prevBtn');
+            this.nextBtn = container.querySelector('#nextBtn');
+            this.slideCounter = container.querySelector('#slideCounter');
+            this.indicators = container.querySelector('#indicators');
+            this.loadingIndicator = container.querySelector('#loadingIndicator');
+            this.loadingProgress = container.querySelector('#loadingProgress');
+
+            this.slides = [];
+            this.currentSlide = 0;
+            this.totalSlides = 0;
+            this.imageLoader = new OptimizedImageLoader();
+
+            this.initEvents();
+        }
+
+        initEvents() {
+            this.prevBtn.addEventListener('click', () => this.prevSlide());
+            this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+            // Touch support
+            let startX = 0;
+            let endX = 0;
+
+            this.slidesContainer.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+
+            this.slidesContainer.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        this.nextSlide();
+                    } else {
+                        this.prevSlide();
+                    }
+                }
+            });
+
+            // Keyboard support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') this.prevSlide();
+                if (e.key === 'ArrowRight') this.nextSlide();
+            });
+        }
+
+        async addSlide(imgInfo, slideIndex, isFirst = false) {
+            const slide = document.createElement('div');
+            slide.classList.add('slide');
+
+            const img = document.createElement('img');
+            img.alt = `Grafico ${imgInfo.categoria}-${imgInfo.sottoIndice}`;
+            img.classList.add('grafico-img', 'lazy');
+
+            // Prova a usare l'immagine dalla cache
+            const cachedImg = this.imageLoader.getCachedImage(imgInfo.src);
+            if (cachedImg) {
+                img.src = imgInfo.src;
+                img.classList.add('loaded');
+                img.classList.remove('lazy');
+            } else {
+                // Lazy load per immagini non in cache
+                img.dataset.src = imgInfo.src;
+                this.setupLazyLoad(img);
+            }
+
+            slide.appendChild(img);
+            this.slidesContainer.appendChild(slide);
+            this.slides.push(slide);
+            this.totalSlides++;
+
+            if (isFirst) {
+                slide.classList.add('active');
+                this.hideLoading();
+                // Assicurati che la prima immagine sia caricata
+                if (!cachedImg) {
+                    await this.loadImage(img);
+                }
+            }
+
+            this.updateIndicators();
+            this.updateCounter();
+            this.updateNavButtons();
+        }
+
+        setupLazyLoad(img) {
+            // Intersection Observer per lazy loading
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            this.loadImage(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                observer.observe(img);
+            } else {
+                // Fallback per browser che non supportano IntersectionObserver
+                this.loadImage(img);
+            }
+        }
+
+        async loadImage(img) {
+            if (img.dataset.src) {
+                try {
+                    await this.imageLoader.preloadImage(img.dataset.src);
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    img.classList.remove('lazy');
+                    delete img.dataset.src;
+                } catch (error) {
+                    console.error('Error loading image:', error);
+                }
+            }
+        }
+
+        updateProgress(loaded, total) {
+            if (this.loadingProgress && total > 0) {
+                const percentage = Math.round((loaded / total) * 100);
+                this.loadingProgress.textContent = `${percentage}% (${loaded}/${total})`;
+            }
+        }
+
+        goToSlide(index) {
+            if (index < 0 || index >= this.totalSlides) return;
+
+            this.slides[this.currentSlide].classList.remove('active');
+            this.currentSlide = index;
+            this.slides[this.currentSlide].classList.add('active');
+
+            // Preload delle immagini adiacenti
+            this.preloadAdjacentImages();
+
+            this.updateIndicators();
+            this.updateCounter();
+            this.updateNavButtons();
+        }
+
+        preloadAdjacentImages() {
+            // Preload dell'immagine precedente e successiva
+            const prevIndex = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+            const nextIndex = (this.currentSlide + 1) % this.totalSlides;
+
+            [prevIndex, nextIndex].forEach(index => {
+                const img = this.slides[index]?.querySelector('img[data-src]');
+                if (img) {
+                    this.loadImage(img);
+                }
+            });
+        }
+
+        nextSlide() {
+            const nextIndex = (this.currentSlide + 1) % this.totalSlides;
+            this.goToSlide(nextIndex);
+        }
+
+        prevSlide() {
+            const prevIndex = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+            this.goToSlide(prevIndex);
+        }
+
+        updateIndicators() {
+            this.indicators.innerHTML = '';
+
+            for (let i = 0; i < this.totalSlides; i++) {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                if (i === this.currentSlide) {
+                    indicator.classList.add('active');
+                }
+                indicator.addEventListener('click', () => this.goToSlide(i));
+                this.indicators.appendChild(indicator);
+            }
+        }
+
+        updateCounter() {
+            this.slideCounter.textContent = `${this.currentSlide + 1} / ${this.totalSlides}`;
+        }
+
+        updateNavButtons() {
+            this.prevBtn.disabled = this.totalSlides <= 1;
+            this.nextBtn.disabled = this.totalSlides <= 1;
+        }
+
+        hideLoading() {
+            if (this.loadingIndicator) {
+                this.loadingIndicator.style.display = 'none';
+            }
+        }
+    }
+
+    // Cache globale per immagini tra pagine
+    class GlobalImageCache {
+        constructor() {
+            this.cacheKey = 'questionario_image_cache';
+            this.maxAge = 30 * 60 * 1000; // 30 minuti
+        }
+
+        // Salva info immagini in localStorage
+        saveImageInfo(anno, tipo, immaginiInfo) {
+            try {
+                const cacheData = {
+                    timestamp: Date.now(),
+                    data: {
+                        [`${anno}-${tipo}`]: immaginiInfo
+                    }
+                };
+
+                const existing = this.getCacheData();
+                if (existing) {
+                    cacheData.data = { ...existing.data, ...cacheData.data };
+                }
+
+                localStorage.setItem(this.cacheKey, JSON.stringify(cacheData));
+            } catch (error) {
+                console.warn('Unable to save to localStorage:', error);
+            }
+        }
+
+        // Carica info immagini da localStorage
+        loadImageInfo(anno, tipo) {
+            try {
+                const cacheData = this.getCacheData();
+                if (cacheData && cacheData.data[`${anno}-${tipo}`]) {
+                    return cacheData.data[`${anno}-${tipo}`];
+                }
+            } catch (error) {
+                console.warn('Unable to load from localStorage:', error);
+            }
+            return null;
+        }
+
+        getCacheData() {
+            try {
+                const cached = localStorage.getItem(this.cacheKey);
+                if (cached) {
+                    const data = JSON.parse(cached);
+                    // Verifica se la cache è ancora valida
+                    if (Date.now() - data.timestamp < this.maxAge) {
+                        return data;
+                    } else {
+                        localStorage.removeItem(this.cacheKey);
+                    }
+                }
+            } catch (error) {
+                console.warn('Error reading cache:', error);
+            }
+            return null;
+        }
+    }
+
+    // Inizializzazione
+    const params = new URLSearchParams(window.location.search);
+    const anno = params.get('anno');
+    const fase = params.get('fase');
+    const relazioni = params.get('relazioni');
+    const tipo = fase ? fase : relazioni;
+
+    const titoloAnno = document.getElementById('titoloAnno');
+    if (fase) {
+        titoloAnno.textContent = `Dati Statistici per ${anno} - ${fase}`;
+    } else if (relazioni) {
+        titoloAnno.textContent = `Relazioni ${relazioni} per ${anno}`;
+    } else {
+        titoloAnno.textContent = `Grafici per ${anno}`;
+    }
+
+    const graficiContainer = document.getElementById('graficiContainer');
+    const categoryNav = document.getElementById('categoryNav');
+    const preloadStatus = document.getElementById('preloadStatus');
+
+    const slider = new CustomSlider(graficiContainer);
+    const globalCache = new GlobalImageCache();
+    let nomiScuole = {};
+    let categorieInfo = [];
+
+    // Funzione per scoprire immagini (migliorata con cache)
+    async function scopriImmaginiDisponibili() {
+        // Prova prima la cache
+        let cached = globalCache.loadImageInfo(anno, tipo);
+        if (cached) {
+            console.log('Usando immagini dalla cache');
+            return cached;
+        }
+
+        const immaginiTrovate = [];
+        let categoria = 1;
+
+        while (true) {
+            let sottoIndice = 1;
+            let trovatoAlmenoUno = false;
+
+            while (true) {
+                const fileBase = `${anno}-${tipo}-${categoria}-${sottoIndice}`;
+                const imgSrc = `grafici/${anno}/${fileBase}.png`;
+
+                try {
+                    const response = await fetch(imgSrc, { method: 'HEAD' });
+                    if (response.ok) {
+                        immaginiTrovate.push({
+                            src: imgSrc,
+                            categoria: categoria,
+                            sottoIndice: sottoIndice,
+                            fileBase: fileBase
+                        });
+                        trovatoAlmenoUno = true;
+                        sottoIndice++;
+                    } else {
+                        break;
+                    }
+                } catch (error) {
+                    break;
+                }
+            }
+
+            if (!trovatoAlmenoUno) {
+                break;
+            }
+            categoria++;
+        }
+
+        // Salva in cache per future visite
+        globalCache.saveImageInfo(anno, tipo, immaginiTrovate);
+        return immaginiTrovate;
+    }
+
+    async function caricaGrafici() {
+        try {
+            // Carica i nomi delle scuole
+            try {
+                const response = await fetch(`grafici/${anno}/nomiScuole.json`);
+                nomiScuole = await response.json();
+            } catch (err) {
+                console.warn("Non è stato possibile caricare nomiScuole.json", err);
+            }
+
+            // Scopri immagini
+            console.log('Ricerca immagini disponibili...');
+            const immaginiInfo = await scopriImmaginiDisponibili();
+
+            if (immaginiInfo.length === 0) {
+                slider.hideLoading();
+                graficiContainer.innerHTML = '<div class="no-graphics-message">Nessun grafico trovato per questa combinazione.</div>';
+                return;
+            }
+
+            // Ordina le immagini
+            immaginiInfo.sort((a, b) => {
+                if (a.categoria !== b.categoria) {
+                    return a.categoria - b.categoria;
+                }
+                return a.sottoIndice - b.sottoIndice;
+            });
+
+            console.log(`Trovate ${immaginiInfo.length} immagini. Inizio preload ottimizzato...`);
+
+            // Mostra status preload
+            preloadStatus.style.display = 'block';
+            preloadStatus.textContent = 'Precaricando immagini prioritarie...';
+
+            // Preload ottimizzato con priorità
+            const imageSources = immaginiInfo.map(info => info.src);
+            await slider.imageLoader.preloadWithPriority(imageSources, (loaded, total) => {
+                slider.updateProgress(loaded, total);
+                preloadStatus.textContent = `Precaricate ${loaded}/${total} immagini`;
+            });
+
+            // Nascondi status preload dopo un po'
+            setTimeout(() => {
+                preloadStatus.style.display = 'none';
+            }, 2000);
+
+            // Aggiungi slide
+            for (let i = 0; i < immaginiInfo.length; i++) {
+                const imgInfo = immaginiInfo[i];
+                await slider.addSlide(imgInfo, i, i === 0);
+
+                // Salva info categoria
+                if (imgInfo.sottoIndice === 1) {
+                    const chiave = `${anno}-${tipo}-${imgInfo.categoria}-1`;
+                    const nome = nomiScuole[chiave] || `Questionario ${imgInfo.categoria}`;
+                    categorieInfo.push({
+                        nome: nome,
+                        slideIndex: i
+                    });
+                }
+            }
+
+            createCategoryButtons();
+            console.log('Caricamento completato!');
+
+        } catch (error) {
+            console.error('Errore durante il caricamento:', error);
+            slider.hideLoading();
+            preloadStatus.style.display = 'none';
+            graficiContainer.innerHTML = '<div class="no-graphics-message">Errore durante il caricamento dei grafici.</div>';
+        }
+    }
+
+    function createCategoryButtons() {
+        categorieInfo.forEach((categoria) => {
+            const button = document.createElement('button');
+            button.textContent = categoria.nome;
+            button.onclick = () => {
+                slider.goToSlide(categoria.slideIndex);
+            };
+            categoryNav.appendChild(button);
+        });
+    }
+
+    function tornaIndietro() {
+        window.history.back();
+    }
+
+    // Preload globale per altre sezioni
+    function preloadOtherSections() {
+        // Questa funzione può essere chiamata dalla pagina principale
+        // per precaricare le immagini di altre sezioni
+        const otherParams = [
+            { anno, fase: 'fase1' },
+            { anno, fase: 'fase2' },
+            { anno, relazioni: 'relazioni1' }
+        ];
+
+        otherParams.forEach(async (params) => {
+            if (params.fase !== fase && params.relazioni !== relazioni) {
+                try {
+                    const tipo = params.fase || params.relazioni;
+                    const cached = globalCache.loadImageInfo(anno, tipo);
+                    if (!cached) {
+                        // Scopri e salva in cache per future visite
+                        console.log(`Precaricando info per ${tipo}...`);
+                        // Qui potresti implementare un preload in background
+                    }
+                } catch (error) {
+                    console.warn(`Error preloading ${params}:`, error);
+                }
+            }
+        });
+    }
+
+    // Avvia il caricamento
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            caricaGrafici();
+            // Preload altre sezioni dopo 5 secondi
+            setTimeout(preloadOtherSections, 5000);
+        });
+    } else {
+        caricaGrafici();
+        setTimeout(preloadOtherSections, 5000);
+    }
+
+    // Esponi funzioni globali per il preload da altre pagine
+    window.questionarioPreload = {
+        preloadSection: async (anno, tipo) => {
+            const cache = new GlobalImageCache();
+            let cached = cache.loadImageInfo(anno, tipo);
+            if (!cached) {
+                // Implementa preload in background
+                console.log(`Background preload for ${anno}-${tipo}`);
+            }
+        }
+    };
+</script>
+</body>
+</html>
