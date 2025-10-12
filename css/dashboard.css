@@ -1,0 +1,257 @@
+/* --- STILI GLOBALI E LAYOUT DI BASE --- */
+:root {
+    --colore-primario: #007bff;
+    --colore-primario-scuro: #0056b3;
+    --colore-sfondo: #f4f7f9;
+    --colore-container: #ffffff;
+    --colore-testo: #333333;
+    --colore-bordo: #dee2e6;
+    --ombra-leggera: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --raggio-bordi: 8px;
+}
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--colore-sfondo);
+    color: var(--colore-testo);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: var(--colore-primario-scuro);
+    font-weight: 600;
+}
+
+/* --- CONTAINER DEI FILTRI --- */
+.filtri-container {
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 20px;
+    background-color: var(--colore-container);
+    border-radius: var(--raggio-bordi);
+    box-shadow: var(--ombra-leggera);
+}
+
+.filtro {
+    flex: 1; /* Occupa lo spazio disponibile in modo equo */
+    min-width: 200px;
+    text-align: left;
+}
+
+.filtro label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* --- STILE PER IL PULSANTE 'TORNA ALLA HOME' --- */
+
+.back-to-home-button {
+    display: inline-block; /* Permette di dare padding e margini */
+    margin-top: 40px; /* Spazio dal contenuto sopra */
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #6c757d, #495057); /* Un grigio scuro, professionale */
+    border: none;
+    border-radius: var(--raggio-bordi); /* Usa la stessa variabile degli altri elementi */
+    text-decoration: none; /* Rimuove la sottolineatura del link */
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+    transition: all 0.3s ease;
+}
+
+.back-to-home-button:hover {
+    background: linear-gradient(135deg, #495057, #343a40);
+    transform: translateY(-2px); /* Effetto "sollevato" al passaggio del mouse */
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+}
+
+/* Stile per i menu a tendina (select) */
+select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid var(--colore-bordo);
+    border-radius: var(--raggio-bordi);
+    background-color: #fff;
+    cursor: pointer;
+    appearance: none; /* Rimuove lo stile di default del browser */
+
+    /* Freccia personalizzata */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select:hover {
+    border-color: var(--colore-primario);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--colore-primario);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+select:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* --- AREA DI VISUALIZZAZIONE DEL GRAFICO --- */
+#area-grafico-container {
+    max-width: 900px;
+    height: 70vh; /* Altezza flessibile in base allo schermo */
+    min-height: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--colore-container);
+    border-radius: var(--raggio-bordi);
+    box-shadow: var(--ombra-leggera);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Stile per il testo segnaposto */
+#placeholder-grafico {
+    color: #888;
+    font-size: 1.2rem;
+}
+
+/* Stile per l'immagine del grafico */
+#area-grafico-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: var(--raggio-bordi);
+    object-fit: contain; /* Assicura che l'immagine sia sempre visibile per intero */
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Tablet */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .filtri-container {
+        flex-direction: column; /* I filtri vanno uno sotto l'altro */
+        align-items: stretch; /* Si allungano per tutta la larghezza */
+    }
+
+    #area-grafico-container {
+        height: 60vh;
+        min-height: 400px;
+    }
+}
+
+/* Smartphone */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .filtri-container {
+        padding: 15px;
+    }
+
+    select {
+        padding: 10px;
+    }
+
+    #area-grafico-container {
+        height: 50vh;
+        min-height: 300px;
+    }
+}
+
+/* --- STILI PER IL VIEWER DEL GRAFICO E LE FRECCE (Versione Robusta) --- */
+
+/* Contenitore principale per il grafico e i suoi controlli */
+.grafico-viewer {
+    position: relative; /* Necessario per posizionare le frecce */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Stile base per le frecce di navigazione delle domande */
+.nav-button-domande {
+    /* --- Aggiunte per il Reset e Centratura --- */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+    /* --- Fine Aggiunte --- */
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--colore-bordo);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Forza la forma circolare */
+    cursor: pointer;
+    font-size: 28px; /* Leggermente più grande per visibilità */
+    font-weight: bold;
+    color: var(--colore-primario);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.nav-button-domande:hover:not(:disabled) {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    border-color: var(--colore-primario);
+}
+
+/* Stile per i bottoni quando sono disabilitati */
+.nav-button-domande:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: translateY(-50%);
+}
+
+/* Posizionamento specifico per freccia sinistra e destra */
+#prevDomandaBtn {
+    left: -25px;
+}
+
+#nextDomandaBtn {
+    right: -25px;
+}
+
+/* --- AGGIORNAMENTO RESPONSIVE PER LE FRECCE --- */
+@media (max-width: 1000px) {
+    #prevDomandaBtn {
+        left: 10px;
+    }
+    #nextDomandaBtn {
+        right: 10px;
+    }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Dashboard Risultati</title>
+    <link href="../css/dashboard.css" rel="stylesheet"> </head>
+    <script src="../javascript/dashboard.js"></script>
+<body>
+<h1>Esplora i Risultati dei Questionari</h1>
+
+<div class="filtri-container">
+    <div class="filtro">
+        <label for="seleziona-scuola">Seleziona una Scuola:</label>
+        <select id="seleziona-scuola">
+            <option value="">-- Scegli una scuola --</option>
+        </select>
+    </div>
+    <div class="filtro">
+        <label for="seleziona-domanda">Seleziona una Domanda:</label>
+        <select id="seleziona-domanda" disabled> <option value="">-- Scegli una domanda --</option>
+        </select>
+    </div>
+</div>
+
+<div class="grafico-viewer">
+    <div id="area-grafico-container">
+        <div id="placeholder-grafico">
+            <p>Seleziona una scuola e una domanda per visualizzare il grafico corrispondente.</p>
+        </div>
+    </div>
+
+    <button class="nav-button-domande" id="prevDomandaBtn" disabled>‹</button>
+    <button class="nav-button-domande" id="nextDomandaBtn" disabled>›</button>
+</div>
+
+<a href="index.html" class="back-to-home-button">Torna alla Pagina Principale</a>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
