@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. LEGGI I PARAMETRI DALL'URL ---
     const params = new URLSearchParams(window.location.search);
     const anno = params.get('anno');
-    const fase = params.get('fase');
+
+    const tipo = params.get('fase') || params.get('relazioni');
 
     // --- 2. STRUTTURA DATI COMPLETA E CORRETTA ---
     const datiCompleti = {
@@ -132,6 +133,123 @@ document.addEventListener('DOMContentLoaded', () => {
                     "Questionario 2a Parte": "grafici/2017/2017-finale-12-2.png",
                     "Grafici": "grafici/2017/2017-finale-12-3.png",
                 }
+            },
+            "studenti": {
+                "IISS De Marco - Valzani": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/IISS De Marco - Valzani/IISS De Marco - Valzani-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/IISS De Marco - Valzani/IISS De Marco - Valzani-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/IISS De Marco - Valzani/IISS De Marco - Valzani-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/IISS De Marco - Valzani/IISS De Marco - Valzani-4.png",
+                    "Pagina 5": "relazioni/Studenti/2017-2018/IISS De Marco - Valzani/IISS De Marco - Valzani-5.png"
+                },
+
+                "I.I.S.S. Majorana (Biennio 1 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/IISS Majorana - Ist. Tecn. 1° Tranche/IISS Majorana - Ist. Tecn. 1° Tranche-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/IISS Majorana - Ist. Tecn. 1° Tranche/IISS Majorana - Ist. Tecn. 1° Tranche-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/IISS Majorana - Ist. Tecn. 1° Tranche/IISS Majorana - Ist. Tecn. 1° Tranche-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/IISS Majorana - Ist. Tecn. 1° Tranche/IISS Majorana - Ist. Tecn. 1° Tranche-4.png"
+                },
+
+                "I.I.S.S. Majorana (Biennio 2 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/IISS Majorana - Ist. Tecn. 2° Tranche/IISS Majorana - Ist. Tecn. 2° Tranche-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/IISS Majorana - Ist. Tecn. 2° Tranche/IISS Majorana - Ist. Tecn. 2° Tranche-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/IISS Majorana - Ist. Tecn. 2° Tranche/IISS Majorana - Ist. Tecn. 2° Tranche-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/IISS Majorana - Ist. Tecn. 2° Tranche/IISS Majorana - Ist. Tecn. 2° Tranche-4.png",
+                    "Pagina 5": "relazioni/Studenti/2017-2018/IISS Majorana - Ist. Tecn. 2° Tranche/IISS Majorana - Ist. Tecn. 2° Tranche-5.png"
+                },
+
+                "I.I.S.S. Majorana (Scientifico Internazionale)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/IISS Majorana - Scient. Internazionale/IISS Majorana - Scient. Internazionale-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/IISS Majorana - Scient. Internazionale/IISS Majorana - Scient. Internazionale-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/IISS Majorana - Scient. Internazionale/IISS Majorana - Scient. Internazionale-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/IISS Majorana - Scient. Internazionale/IISS Majorana - Scient. Internazionale-4.png",
+                    "Pagina 5": "relazioni/Studenti/2017-2018/IISS Majorana - Scient. Internazionale/IISS Majorana - Scient. Internazionale-5.png"
+                },
+
+                "I.I.S.S. Majorana (Triennio Scienze Applicate)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/IISS Majorana triennio SA/IISS Majorana triennio SA-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/IISS Majorana triennio SA/IISS Majorana triennio SA-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/IISS Majorana triennio SA/IISS Majorana triennio SA-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/IISS Majorana triennio SA/IISS Majorana triennio SA-4.png",
+                    "Pagina 5": "relazioni/Studenti/2017-2018/IISS Majorana triennio SA/IISS Majorana triennio SA-5.png"
+                },
+
+                "I.I.S.S. Majorana (Triennio Scinetifico Internazionale)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/IISS Majorana triennio SInt/IISS Majorana triennio SInt-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/IISS Majorana triennio SInt/IISS Majorana triennio SInt-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/IISS Majorana triennio SInt/IISS Majorana triennio SInt-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/IISS Majorana triennio SInt/IISS Majorana triennio SInt-4.png"
+                },
+
+                "I.I.S.S. Majorana (Biennio Scienze Applicate)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/IISS Majorana- Biennio Scienze Applicate/IISS Majorana-Scienze Applicate-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/IISS Majorana- Biennio Scienze Applicate/IISS Majorana-Scienze Applicate-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/IISS Majorana- Biennio Scienze Applicate/IISS Majorana-Scienze Applicate-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/IISS Majorana- Biennio Scienze Applicate/IISS Majorana-Scienze Applicate-4.png",
+                    "Pagina 5": "relazioni/Studenti/2017-2018/IISS Majorana- Biennio Scienze Applicate/IISS Majorana-Scienze Applicate-5.png"
+                    
+                },
+
+                "IPSIA Ferraris (Biennio Elettronica)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/IPSIA Ferraris - biennio Elettronica/IPSIA Ferraris - biennio Elettronica-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/IPSIA Ferraris - biennio Elettronica/IPSIA Ferraris - biennio Elettronica-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/IPSIA Ferraris - biennio Elettronica/IPSIA Ferraris - biennio Elettronica-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/IPSIA Ferraris - biennio Elettronica/IPSIA Ferraris - biennio Elettronica-4.png",
+                    "Pagina 5": "relazioni/Studenti/2017-2018/IPSIA Ferraris - biennio Elettronica/IPSIA Ferraris - biennio Elettronica-5.png"
+                },
+
+                "IPSIA Ferraris (Biennio Meccanica)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/IPSIA Ferraris - biennio Meccanica/IPSIA Ferraris - biennio Meccanica-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/IPSIA Ferraris - biennio Meccanica/IPSIA Ferraris - biennio Meccanica-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/IPSIA Ferraris - biennio Meccanica/IPSIA Ferraris - biennio Meccanica-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/IPSIA Ferraris - biennio Meccanica/IPSIA Ferraris - biennio Meccanica-4.png",
+                    "Pagina 5": "relazioni/Studenti/2017-2018/IPSIA Ferraris - biennio Meccanica/IPSIA Ferraris - biennio Meccanica-5.png"
+                },
+                
+                "Ist. Palumbo (Economico Sociale)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/Palumbo - Econ. Soc/Palumbo - Econ. Soc-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/Palumbo - Econ. Soc/Palumbo - Econ. Soc-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/Palumbo - Econ. Soc/Palumbo - Econ. Soc-3.png"
+                },
+
+                "Ist. Palumbo (Latiano Scienze - Umane 1 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/Palumbo di Latiano - Scienze Umane/Palumbo di Latiano - Scienze Umane-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/Palumbo di Latiano - Scienze Umane/Palumbo di Latiano - Scienze Umane-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/Palumbo di Latiano - Scienze Umane/Palumbo di Latiano - Scienze Umane-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/Palumbo di Latiano - Scienze Umane/Palumbo di Latiano - Scienze Umane-4.png"
+                },
+
+                "Ist. Palumbo (Latiano Scienze - Umane 2 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/Palumbo Latiano Sc.Umane/Palumbo Latiano Sc.Umane-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/Palumbo Latiano Sc.Umane/Palumbo Latiano Sc.Umane-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/Palumbo Latiano Sc.Umane/Palumbo Latiano Sc.Umane-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/Palumbo Latiano Sc.Umane/Palumbo Latiano Sc.Umane-4.png"
+                },
+
+                "Ist. Palumbo (Brindisi Scienze - Umane)": {
+                    "Pagina 1": "relazioni/Studenti/2017-2018/Palumbo Sc.Umane/Palumbo Sc.Umane-1.png",
+                    "Pagina 2": "relazioni/Studenti/2017-2018/Palumbo Sc.Umane/Palumbo Sc.Umane-2.png",
+                    "Pagina 3": "relazioni/Studenti/2017-2018/Palumbo Sc.Umane/Palumbo Sc.Umane-3.png",
+                    "Pagina 4": "relazioni/Studenti/2017-2018/Palumbo Sc.Umane/Palumbo Sc.Umane-4.png"
+                }
+            },
+            "detenuti": {
+                "Casa Circondariale Brindisi":{
+                    "Pagina 1":
+                        "relazioni/Detenuti/2017-2018/1.png",
+
+                    "Pagina 2":
+                        "relazioni/Detenuti/2017-2018/2.png",
+
+                    "Pagina 3":
+                        "relazioni/Detenuti/2017-2018/3.png",
+
+                    "Pagina 4":
+                        "relazioni/Detenuti/2017-2018/4.png",
+
+                    "Pagina 5":
+                        "relazioni/Detenuti/2017-2018/5.png",
+                    },
             }
         },
         "2018": {
@@ -259,6 +377,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     "Grafici": "grafici/2018/2018-finale-12-3 (Scienze Umane Calcagno).png",
                 },
             },
+            "studenti": {
+                "Ist. De Marco": {
+                    "Pagina 1": "relazioni/Studenti/2018-2019/Risultati DE MARCO 2018 2019/1.png",
+                    "Pagina 2": "relazioni/Studenti/2018-2019/Risultati DE MARCO 2018 2019/2.png",
+                    "Pagina 3": "relazioni/Studenti/2018-2019/Risultati DE MARCO 2018 2019/3.png",
+                    "Pagina 4": "relazioni/Studenti/2018-2019/Risultati DE MARCO 2018 2019/4.png"
+                },
+                "Ist. IPSIA Ferraris (4AI 4AM)": {
+                    "Pagina 1": "relazioni/Studenti/2018-2019/Risultati IPSIA FERRARIS 4AI 4AM 2018 2019/1.png",
+                    "Pagina 2": "relazioni/Studenti/2018-2019/Risultati IPSIA FERRARIS 4AI 4AM 2018 2019/2.png",
+                    "Pagina 3": "relazioni/Studenti/2018-2019/Risultati IPSIA FERRARIS 4AI 4AM 2018 2019/3.png"
+                },
+                "Ist. IPSIA Ferraris (4AT 4BT)": {
+                    "Pagina 1": "relazioni/Studenti/2018-2019/Risultati IPSIA FERRARIS 4AT 4BT 2018 2019/1.png",
+                    "Pagina 2": "relazioni/Studenti/2018-2019/Risultati IPSIA FERRARIS 4AT 4BT 2018 2019/2.png",
+                    "Pagina 3": "relazioni/Studenti/2018-2019/Risultati IPSIA FERRARIS 4AT 4BT 2018 2019/3.png"
+                }
+            },
+            "detenuti": {
+                "Casa Circondariale Brindisi 1 grp": {
+                    "Pagina 1": "relazioni/Detenuti/2018-2019/Risultati Casa Circondariale di Brindisi 1 grp 2018 2019/1.png",
+                    "Pagina 2": "relazioni/Detenuti/2018-2019/Risultati Casa Circondariale di Brindisi 1 grp 2018 2019/2.png",
+                    "Pagina 3": "relazioni/Detenuti/2018-2019/Risultati Casa Circondariale di Brindisi 1 grp 2018 2019/3.png",
+                    "Pagina 4": "relazioni/Detenuti/2018-2019/Risultati Casa Circondariale di Brindisi 1 grp 2018 2019/4.png"
+                },
+                "Casa Circondariale Brindisi 2 grp": {
+                    "Pagina 1": "relazioni/Detenuti/2018-2019/Risultati Casa Circondariale di Brindisi 2 grp 2018 2019/1.png",
+                    "Pagina 2": "relazioni/Detenuti/2018-2019/Risultati Casa Circondariale di Brindisi 2 grp 2018 2019/2.png",
+                    "Pagina 3": "relazioni/Detenuti/2018-2019/Risultati Casa Circondariale di Brindisi 2 grp 2018 2019/3.png"
+                },
+            }
         },
         "2019": {
             "iniziale": {
@@ -304,6 +453,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     "Questionario 2": "grafici/2019/2019-finale-4-2.png",
                     "Grafici": "grafici/2019/2019-finale-4-3.png",
                 },
+            },
+            "studenti": {
+                "I.I.S.S. Majorana (Sanitario)": {
+                    "Pagina 1": "relazioni/Studenti/2019-2020/Risultati Majorana sanitario 2020/1.png",
+                    "Pagina 2": "relazioni/Studenti/2019-2020/Risultati Majorana sanitario 2020/2.png",
+                    "Pagina 3": "relazioni/Studenti/2019-2020/Risultati Majorana sanitario 2020/3.png"
+                },
+
+                "I.I.S.S Majorana (Scientifico Internazionale)": {
+                    "Pagina 1": "relazioni/Studenti/2019-2020/Risultati Majorana scientifico internazionale 2020/1.png",
+                    "Pagina 2": "relazioni/Studenti/2019-2020/Risultati Majorana scientifico internazionale 2020/2.png",
+                    "Pagina 3": "relazioni/Studenti/2019-2020/Risultati Majorana scientifico internazionale 2020/3.png"
+                },
+                "I.I.S.S Majorana (Scienze Applicate)": {
+                    "Pagina 1": "relazioni/Studenti/2019-2020/Risultati Majorana scienze applicate 2020/1.png",
+                    "Pagina 2": "relazioni/Studenti/2019-2020/Risultati Majorana scienze applicate 2020/2.png",
+                    "Pagina 3": "relazioni/Studenti/2019-2020/Risultati Majorana scienze applicate 2020/3.png"
+                }
+            },
+            "detenuti": {
+                "Casa Circondariale Brindisi": {
+                    "Grafico 1": "relazioni/Detenuti/2019-2020/grafici questionario Casa Circ di BR 2020 FINALE PRIMO GRP.xlsx",
+                }
             }
         },
         "2021": {
@@ -687,6 +859,38 @@ document.addEventListener('DOMContentLoaded', () => {
                         "grafici/2022/Majorana sanitario finale 2022/12.Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze.png",
                 },
             },
+            "studenti": {
+                "I.I.S.S. Majorana (Chimico 1 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2022-2023/Risultati Majorana chimico 1 grp 2022/1.png",
+                    "Pagina 2": "relazioni/Studenti/2022-2023/Risultati Majorana chimico 1 grp 2022/2.png",
+                    "Pagina 3": "relazioni/Studenti/2022-2023/Risultati Majorana chimico 1 grp 2022/3.png",
+                    "Pagina 4": "relazioni/Studenti/2022-2023/Risultati Majorana chimico 1 grp 2022/4.png",
+                    "Pagina 5": "relazioni/Studenti/2022-2023/Risultati Majorana chimico 1 grp 2022/5.png"
+                },
+                "I.I.S.S. Majorana (Chimico 2 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2022-2023/Risultati Majorana chimico 2 grp 2023/1.png",
+                    "Pagina 2": "relazioni/Studenti/2022-2023/Risultati Majorana chimico 2 grp 2023/2.png",
+                    "Pagina 3": "relazioni/Studenti/2022-2023/Risultati Majorana chimico 2 grp 2023/3.png",
+                    "Pagina 4": "relazioni/Studenti/2022-2023/Risultati Majorana chimico 2 grp 2023/4.png",
+                    "Pagina 5": "relazioni/Studenti/2022-2023/Risultati Majorana chimico 2 grp 2023/5.png",
+                },
+                "I.I.S.S. Majorana (Sanitario)": {
+                    "Pagina 1": "relazioni/Studenti/2022-2023/Risultati Majorana sanitario 2022/1.png",
+                    "Pagina 2": "relazioni/Studenti/2022-2023/Risultati Majorana sanitario 2022/2.png",
+                    "Pagina 3": "relazioni/Studenti/2022-2023/Risultati Majorana sanitario 2022/3.png"
+                }
+            },
+            "detenuti": {
+                "Casa Circondariale Brindisi 1 grp":{
+                    "Pagina 1": "relazioni/Detenuti/2022-2023/RISULT_1/1.png",
+                    "Pagina 2": "relazioni/Detenuti/2022-2023/RISULT_1/2.png"
+                },
+
+                "Casa Circondariale Brindisi 2 grp":{
+                    "Pagina 1": "relazioni/Detenuti/2022-2023/RISULT_2/1.png",
+                    "Pagina 2": "relazioni/Detenuti/2022-2023/RISULT_2/2.png"
+                },
+            }
         },
         "2023": {
             "iniziale": {
@@ -989,6 +1193,28 @@ document.addEventListener('DOMContentLoaded', () => {
                         "grafici/2023/Palumbo liceo linguistico finale I grp 2023/12.Confronto diretto con detenuti.png",
                 },
             },
+            "studenti": {
+                "I.I.S.S. Majorana (Chimico)": {
+                    "Pagina 1": "relazioni/Studenti/2023-2024/Risultati Majorana chimico 2023/1.png",
+                    "Pagina 2": "relazioni/Studenti/2023-2024/Risultati Majorana chimico 2023/2.png",
+                    "Pagina 3": "relazioni/Studenti/2023-2024/Risultati Majorana chimico 2023/3.png",
+                    "Pagina 4": "relazioni/Studenti/2023-2024/Risultati Majorana chimico 2023/4.png",
+                    "Pagina 5": "relazioni/Studenti/2023-2024/Risultati Majorana chimico 2023/5.png"
+                },
+                "I.I.S.S. Majorana (Sanitario)": {
+                    "Pagina 1": "relazioni/Studenti/2023-2024/Risultati Majorana sanitario 2023/1.png",
+                    "Pagina 2": "relazioni/Studenti/2023-2024/Risultati Majorana sanitario 2023/2.png",
+                    "Pagina 3": "relazioni/Studenti/2023-2024/Risultati Majorana sanitario 2023/3.png",
+                    "Pagina 4": "relazioni/Studenti/2023-2024/Risultati Majorana sanitario 2023/4.png",
+                    "Pagina 5": "relazioni/Studenti/2023-2024/Risultati Majorana sanitario 2023/5.png"
+                }
+            },
+            "detenuti": {
+                "Casa Circondariale Brindisi": {
+                    "Pagina 1": "relazioni/Detenuti/2023-2024/1.png",
+                    "Pagina 2": "relazioni/Detenuti/2023-2024/2.png"
+                }
+            }
         },
         "2024": {
             "iniziale": {
@@ -1513,10 +1739,93 @@ document.addEventListener('DOMContentLoaded', () => {
                         "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/12.Confronto diretto con detenuti.png",
                 },
             },
-        },
+            "studenti": {
+                "I.I.S.S. Majorana (Ambientale)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Majorana ambientale 2025/Risultati Majorana ambientale 2025-1.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Majorana ambientale 2025/Risultati Majorana ambientale 2025-2.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Majorana ambientale 2025/Risultati Majorana ambientale 2025-3.png",
+                    "Pagina 4": "relazioni/Studenti/2024-2025/Risultati Majorana ambientale 2025/Risultati Majorana ambientale 2025-4.png"
+                },
+                "I.I.S.S. Majorana (Chimico 1 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Majorana chimico 2025/Risultati Majorana chimico 2025-1.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Majorana chimico 2025/Risultati Majorana chimico 2025-2.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Majorana chimico 2025/Risultati Majorana chimico 2025-3.png",
+                    "Pagina 4": "relazioni/Studenti/2024-2025/Risultati Majorana chimico 2025/Risultati Majorana chimico 2025-4.png",
+                    "Pagina 5": "relazioni/Studenti/2024-2025/Risultati Majorana chimico 2025/Risultati Majorana chimico 2025-5.png"
+                },
+                "I.I.S.S. Majorana (Chimico 2 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Majorana chimico 2024 II gruppo/Risultati Majorana chimico sanitario 2024 II gruppo-2.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Majorana chimico 2024 II gruppo/Risultati Majorana chimico sanitario 2024 II gruppo-3.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Majorana chimico 2024 II gruppo/Risultati Majorana chimico sanitario 2024 II gruppo-4.png"
+                },
+                "I.I.S.S. Majorana (Chimico 3 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Majorana chimico  2024 III gruppo/Risultati Majorana chimico  2024 III gruppo-1.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Majorana chimico  2024 III gruppo/Risultati Majorana chimico  2024 III gruppo-2.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Majorana chimico  2024 III gruppo/Risultati Majorana chimico  2024 III gruppo-3.png",
+                    "Pagina 4": "relazioni/Studenti/2024-2025/Risultati Majorana chimico  2024 III gruppo/Risultati Majorana chimico  2024 III gruppo-4.png"
+                },
+                "I.I.S.S. Majorana (Sanitario 1 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Majorana sanitario 2024 I gruppo/Risultati Majorana sanitario 2024 I gruppo-1.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Majorana sanitario 2024 I gruppo/Risultati Majorana sanitario 2024 I gruppo-2.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Majorana sanitario 2024 I gruppo/Risultati Majorana sanitario 2024 I gruppo-3.png",
+                    "Pagina 4": "relazioni/Studenti/2024-2025/Risultati Majorana sanitario 2024 I gruppo/Risultati Majorana sanitario 2024 I gruppo-4.png"
+                },
+                "I.I.S.S. Majorana (Sanitario 2 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Majorana sanitario 2024 II gruppo/Risultati Majorana sanitario 2024 II gruppo-1.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Majorana sanitario 2024 II gruppo/Risultati Majorana sanitario 2024 II gruppo-2.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Majorana sanitario 2024 II gruppo/Risultati Majorana sanitario 2024 II gruppo-3.png",
+                    "Pagina 4": "relazioni/Studenti/2024-2025/Risultati Majorana sanitario 2024 II gruppo/Risultati Majorana sanitario 2024 II gruppo-4.png"
+                },
+                "Ist Palumbo (Economico Sociale 1 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Palumbo economico sociale 2024 I gruppo/Risultati Palumbo economico sociale 2024 I gruppo-1.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Palumbo economico sociale 2024 I gruppo/Risultati Palumbo economico sociale 2024 I gruppo-2.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Palumbo economico sociale 2024 I gruppo/Risultati Palumbo economico sociale 2024 I gruppo-3.png",
+                    "Pagina 4": "relazioni/Studenti/2024-2025/Risultati Palumbo economico sociale 2024 I gruppo/Risultati Palumbo economico sociale 2024 I gruppo-4.png"
+                },
+                "Ist Palumbo (Economico Sociale 2 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Palumbo economico sociale 2024 II gruppo/Risultati Palumbo economico sociale 2024 II gruppo-1.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Palumbo economico sociale 2024 II gruppo/Risultati Palumbo economico sociale 2024 II gruppo-2.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Palumbo economico sociale 2024 II gruppo/Risultati Palumbo economico sociale 2024 II gruppo-3.png",
+                    "Pagina 4": "relazioni/Studenti/2024-2025/Risultati Palumbo economico sociale 2024 II gruppo/Risultati Palumbo economico sociale 2024 II gruppo-4.png"
+                },
+                "Ist Palumbo (Liceo Linguistico 1 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2024 I gruppo/Risultati Palumbo liceo linguistico 2024 I gruppo-1.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2024 I gruppo/Risultati Palumbo liceo linguistico 2024 I gruppo-2.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2024 I gruppo/Risultati Palumbo liceo linguistico 2024 I gruppo-3.png",
+                    "Pagina 4": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2024 I gruppo/Risultati Palumbo liceo linguistico 2024 I gruppo-4.png"
+                },
+                "Ist Palumbo (Liceo Linguistico 2 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2024 II gruppo/Risultati Palumbo liceo linguistico 2024 II gruppo-1.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2024 II gruppo/Risultati Palumbo liceo linguistico 2024 II gruppo-2.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2024 II gruppo/Risultati Palumbo liceo linguistico 2024 II gruppo-3.png",
+                    "Pagina 4": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2024 II gruppo/Risultati Palumbo liceo linguistico 2024 II gruppo-4.png"
+                },
+                "Ist Palumbo (Liceo Linguistico 3 grp)": {
+                    "Pagina 1": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2025/Risultati Palumbo liceo linguistico 2025-1.png",
+                    "Pagina 2": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2025/Risultati Palumbo liceo linguistico 2025-2.png",
+                    "Pagina 3": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2025/Risultati Palumbo liceo linguistico 2025-3.png",
+                    "Pagina 4": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2025/Risultati Palumbo liceo linguistico 2025-4.png",
+                    "Pagina 5": "relazioni/Studenti/2024-2025/Risultati Palumbo liceo linguistico 2025/Risultati Palumbo liceo linguistico 2025-5.png"
+                }
+            },
+            "detenuti": {
+                "Casa Circondariale Brindisi 1 grp": {
+                    "Pagina 1": "relazioni/Detenuti/2024-2025/Relazione finale carcere Primo Gruppo 2024/0001.png",
+                    "Pagina 2": "relazioni/Detenuti/2024-2025/Relazione finale carcere Primo Gruppo 2024/0002.png"
+                },
+                "Casa Circondariale Brindisi 2 grp": {
+                    "Pagina 1": "relazioni/Detenuti/2024-2025/Relazione finale carcere Secondo Gruppo 2024/0001.png",
+                    "Pagina 2": "relazioni/Detenuti/2024-2025/Relazione finale carcere Secondo Gruppo 2024/0002.png"
+                },
+                "Casa Circondariale Brindisi 3 grp": {
+                    "Pagina 1": "relazioni/Detenuti/2024-2025/Relazione finale carcere Terzo Gruppo 2024/0001.png",
+                    "Pagina 2": "relazioni/Detenuti/2024-2025/Relazione finale carcere Terzo Gruppo 2024/0002.png"
+                },
+            }
+        },    
     };
 
-    const datiGrafici = datiCompleti[anno] ? datiCompleti[anno][fase] : null;
+    const datiGrafici = datiCompleti[anno] ? datiCompleti[anno][tipo] : null;
 
     // --- 3. RIFERIMENTI AGLI ELEMENTI HTML ---
     const selectScuola = document.getElementById('seleziona-scuola');
