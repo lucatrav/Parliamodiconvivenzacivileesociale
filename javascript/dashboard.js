@@ -990,7 +990,530 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
             },
         },
+        "2024": {
+            "iniziale": {
+                "I.I.S.S. Majorana (Ambientale)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Majorana ambientale iniziale 2024/1.Sesso.png",
 
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Majorana ambientale iniziale 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Majorana ambientale iniziale 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Majorana ambientale iniziale 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Majorana ambientale iniziale 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Majorana ambientale iniziale 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Majorana ambientale iniziale 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Majorana ambientale iniziale 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Majorana ambientale iniziale 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Majorana ambientale iniziale 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Majorana ambientale iniziale 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Majorana ambientale iniziale 2024/12.Confronto diretto con detenuti.png",
+                },
+                "I.I.S.S. Majorana (Chimico)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Majorana chimico iniziale 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Majorana chimico iniziale 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Majorana chimico iniziale 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Majorana chimico iniziale 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Majorana chimico iniziale 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Majorana chimico iniziale 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Majorana chimico iniziale 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Majorana chimico iniziale 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Majorana chimico iniziale 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Majorana chimico iniziale 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Majorana chimico iniziale 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Majorana chimico iniziale 2024/12.Confronto diretto con detenuti.png",
+                },
+                "I.I.S.S. Majorana (Sanitario)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Majorana sanitario iniziale 1 grp 2024/12.Confronto diretto con detenuti.png",
+                },
+                "Ist. Palumbo (Economico Sociale 1 grp)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Palumbo economico sociale iniziale 1 grp 2024/12.Confronto diretto con detenuti.png",
+                },
+                "Ist. Palumbo (Economico Sociale 2 grp)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Palumbo economico sociale iniziale 2 grp 2024/12.Confronto diretto con i detenuti.png",
+                },
+                "Ist. Palumbo (Linguistico 1 grp)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 1 grp 2024/12.Confronto diretto con detenuti.png",
+                },
+                "Ist. Palumbo (Linguistico 2 grp)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Palumbo liceo linguistico iniziale 2 grp 2024/12.Confronto diretto con detenuti.png",
+                },
+            },
+            "finale": {
+                "I.I.S.S. Majorana (Ambientale)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Majorana ambientale finale 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Majorana ambientale finale 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Majorana ambientale finale 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Majorana ambientale finale 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Majorana ambientale finale 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Majorana ambientale finale 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Majorana ambientale finale 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Majorana ambientale finale 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Majorana ambientale finale 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Majorana ambientale finale 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Majorana ambientale finale 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Majorana ambientale finale 2024/12.Confronto diretto con detenuti.png",
+                },
+                "I.I.S.S. Majorana (Chimico)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Majorana chimico finale 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Majorana chimico finale 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Majorana chimico finale 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Majorana chimico finale 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Majorana chimico finale 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Majorana chimico finale 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Majorana chimico finale 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Majorana chimico finale 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Majorana chimico finale 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Majorana chimico finale 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Majorana chimico finale 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Majorana chimico finale 2024/12.Confronto diretto con detenuti.png",
+                },
+                "I.I.S.S. Majorana (Sanitario)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Majorana sanitario finale 1 grp 2024/12.Confronto diretto con detenuti.png",
+                },
+                "Ist. Palumbo (Economico Sociale 1 grp)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Palumbo economico sociale finale 1 grp 2024/12.Confronto diretto con detenuti.png",
+                },
+                "Ist. Palumbo (Economico Sociale 2 grp)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Palumbo economico sociale finale 2 grp 2024/12.Confronto diretto con detenuti.png",
+                },
+                "Ist. Palumbo (Linguistico 1 grp)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Palumbo liceo linguistico finale 1 grp 2024/12.Confronto diretto con detenuti.png",
+                },
+                "Ist. Palumbo (Linguistico 2 grp)": {
+                    "Domanda 1: Sesso":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/1.Sesso.png",
+
+                    "Domanda 2: Conosci le regole":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/2.Conosci le regole.png",
+
+                    "Domanda 3: Cosa sono le regole":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/3.Cosa sono le regole.png",
+
+                    "Domanda 4: A cosa servono le regole":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/4.A cosa servono le regole.png",
+
+                    "Domanda 5: Pensi che le regole servano solo nei luoghi comuni o anche in famiglia":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/5.Regole luoghi comuni o famiglia.png",
+
+                    "Domanda 6: Perche' le regole siano rispettate devono essere scritte o sono valide anche quelle del 'saper vivere'":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/6.Perche' le regole siano rispettate.png",
+
+                    "Domanda 7: Cosa pensi di chi trasgredisce le regole":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/7.Trasgredire le regole.png",
+
+                    "Domanda 8: Secondo te le punizioni presenti oggigiorno per chi trasgredisce le regole sono valide":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/8.Punizioni odierne valide.png",
+
+                    "Domanda 9: Saresti favorevole a punizioni piu' rigide del carcere come la pena di morte":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/9.Favorevole alla pena di morte.png",
+
+                    "Domanda 10: Ritieni il carcere come una misura unica e valida o credi che si possa risolvere diversamente la punizione dei reati minori, tipo con le misure alternative":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/10.Carcere unica misura.png",
+
+                    "Domanda 11: Credi nel reinserimento dei detenuti nella societa', una volta scontata la pena, e ne sei favorevole":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/11.Reinserimento detenuti.png",
+
+                    "Domanda 12: Ti piacerebbe un confronto diretto con i detenuti per capire le motivazioni del loro agire e conoscerne le conseguenze ":
+                        "grafici/2024/Palumbo liceo linguistico finale 2 grp 2024/12.Confronto diretto con detenuti.png",
+                },
+            },
+        },
     };
 
     const datiGrafici = datiCompleti[anno] ? datiCompleti[anno][fase] : null;
